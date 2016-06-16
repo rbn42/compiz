@@ -35,7 +35,7 @@
 
 static CompMetadata blurMetadata;
 
-#define BLUR_GAUSSIAN_RADIUS_MAX 15
+#define BLUR_GAUSSIAN_RADIUS_MAX 900
 
 #define BLUR_FILTER_4X_BILINEAR 0
 #define BLUR_FILTER_GAUSSIAN    1
@@ -1440,7 +1440,7 @@ loadFragmentProgram (CompScreen *s,
 static Bool
 loadFilterProgram (CompScreen *s, int numITC)
 {
-    char  buffer[4096];
+    char  buffer[1024*256];
     char  *targetString;
     char  *str = buffer;
     int   i, j;
@@ -2876,7 +2876,7 @@ static const CompMetadataOptionInfo blurScreenOptionInfo[] = {
     { "alpha_blur_match", "match", 0, 0, 0 },
     { "alpha_blur", "bool", 0, 0, 0 },
     { "filter", "int", RESTOSTRING (0, BLUR_FILTER_LAST), 0, 0 },
-    { "gaussian_radius", "int", "<min>1</min><max>15</max>", 0, 0 },
+    { "gaussian_radius", "int", "<min>1</min><max>900</max>", 0, 0 },
     { "gaussian_strength", "float", "<min>0.0</min><max>1.0</max>", 0, 0 },
     { "mipmap_lod", "float", "<min>0.1</min><max>8.0</max>", 0, 0 },
     { "saturation", "int", "<min>0</min><max>100</max>", 0, 0 },
