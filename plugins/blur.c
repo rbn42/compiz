@@ -2285,6 +2285,9 @@ blurDrawWindowTexture (CompWindow	    *w,
 	{
 	    FragmentAttrib dstFa = fa;
 	    float	   threshold = (float) bw->state[state].threshold;
+            
+            //改变这个数值的详细原因见todo记录.大体的公式是 clip( alpha*threshold) 也就是 alpha=1.0/threshold以上就不会出现透明背景.
+            threshold=40;
 
 	    switch (bs->opt[BLUR_SCREEN_OPTION_FILTER].value.i) {
 	    case BLUR_FILTER_4X_BILINEAR:
