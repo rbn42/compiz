@@ -71,7 +71,7 @@
 		<_long>Gaussian radius</_long>
 		<default>3</default>
 		<min>1</min>
-		<max>15</max>
+		<max>900</max>
 	    </option>
 	    <option name="gaussian_strength" type="float">
 		<_short>Gaussian Strength</_short>
@@ -79,7 +79,7 @@
 		<default>1.0</default>
 		<min>0.0</min>
 		<max>1.0</max>
-		<precision>0.1</precision>
+		<precision>0.001</precision>
 	    </option>
 	    <option name="mipmap_lod" type="float">
 		<_short>Mipmap LOD</_short>
