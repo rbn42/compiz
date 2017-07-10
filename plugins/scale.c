@@ -121,8 +121,9 @@ isScaleWin (CompWindow *w)
     if (w->state & CompWindowStateShadedMask)
 	return FALSE;
 
-    if (!w->mapNum || w->attrib.map_state != IsViewable)
-	return FALSE;
+    /*显示隐藏窗口*/
+//    if (!w->mapNum || w->attrib.map_state != IsViewable)
+//	return FALSE;
 
     switch (ss->type) {
     case ScaleTypeGroup:
