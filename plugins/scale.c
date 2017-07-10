@@ -121,9 +121,8 @@ isScaleWin (CompWindow *w)
     if (w->state & CompWindowStateShadedMask)
 	return FALSE;
 
-    /*显示隐藏窗口*/
-//    if (!w->mapNum || w->attrib.map_state != IsViewable)
-//	return FALSE;
+    if (!w->mapNum || w->attrib.map_state != IsViewable)
+	return FALSE;
 
     switch (ss->type) {
     case ScaleTypeGroup:
@@ -2007,9 +2006,8 @@ scaleInitDisplay (CompPlugin  *p,
     sd->selectedWindow = None;
     sd->hoveredWindow = None;
 
-    /*临时的改动,为了匹配switcher*/
     sd->leftKeyCode  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
-    sd->rightKeyCode = XKeysymToKeycode (d->display, XStringToKeysym ("Tab"));
+    sd->rightKeyCode = XKeysymToKeycode (d->display, XStringToKeysym ("Right"));
     sd->upKeyCode    = XKeysymToKeycode (d->display, XStringToKeysym ("Up"));
     sd->downKeyCode  = XKeysymToKeycode (d->display, XStringToKeysym ("Down"));
 
