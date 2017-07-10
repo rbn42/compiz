@@ -2006,8 +2006,9 @@ scaleInitDisplay (CompPlugin  *p,
     sd->selectedWindow = None;
     sd->hoveredWindow = None;
 
+    /*临时的改动,为了匹配switcher*/
     sd->leftKeyCode  = XKeysymToKeycode (d->display, XStringToKeysym ("Left"));
-    sd->rightKeyCode = XKeysymToKeycode (d->display, XStringToKeysym ("Right"));
+    sd->rightKeyCode = XKeysymToKeycode (d->display, XStringToKeysym ("Tab"));
     sd->upKeyCode    = XKeysymToKeycode (d->display, XStringToKeysym ("Up"));
     sd->downKeyCode  = XKeysymToKeycode (d->display, XStringToKeysym ("Down"));
 
