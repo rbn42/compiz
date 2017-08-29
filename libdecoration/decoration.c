@@ -1149,6 +1149,11 @@ decor_shadow_create (Display		    *xdisplay,
     shadow->width   = 0;
     shadow->height  = 0;
 
+    int shadow_radius=16.0;
+    opt->shadow_offset_x=8;
+    opt->shadow_offset_y=8;
+    opt->shadow_radius=shadow_radius;
+
     shadow_offset_x = opt->shadow_offset_x;
     shadow_offset_y = opt->shadow_offset_y;
 
@@ -1178,6 +1183,9 @@ decor_shadow_create (Display		    *xdisplay,
     c->top_space    = top    + size - shadow_offset_y;
     c->bottom_space = bottom + size + shadow_offset_y;
 
+    c->left_space   = left   + size + shadow_offset_x;
+    c->top_space    = top    + size + shadow_offset_y;
+
     c->left_space   = MAX (left,   c->left_space);
     c->right_space  = MAX (right,  c->right_space);
     c->top_space    = MAX (top,    c->top_space);
@@ -1187,6 +1195,9 @@ decor_shadow_create (Display		    *xdisplay,
     c->right_corner_space  = MAX (1, size - solid_right  - shadow_offset_x);
     c->top_corner_space    = MAX (1, size - solid_top    + shadow_offset_y);
     c->bottom_corner_space = MAX (1, size - solid_bottom - shadow_offset_y);
+
+    c->left_corner_space   = MAX (1, size - solid_left   + shadow_offset_x);
+    c->top_corner_space    = MAX (1, size - solid_top    + shadow_offset_y);
 
     width  = MAX (width, c->left_corner_space + c->right_corner_space);
     height = MAX (height, c->top_corner_space + c->bottom_corner_space);
