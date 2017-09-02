@@ -1327,10 +1327,9 @@ getDstBlurFragmentFunction (CompScreen  *s,
 
 	snprintf (str, 1024,
                   //粗略的亮度调节
-                  "MAX pix_0.a,  sum.r, sum.g;" //临时变量pix_0,只有高斯有
-                  "MAX pix_0.a,  pix_0.a, sum.b;" 
-                  "ADD pix_0.a, sum.a, -pix_0.a;" 
-                  "MAX pix_0.a,  pix_0.a, 0.0;" 
+                  "MAX pix_0, sum.r, sum.g;" //临时变量pix_0,只有高斯有
+                  "MAX pix_0, pix_0.a, sum.b;" 
+                  "SUB pix_0, sum, pix_0;" 
                   "MAD sum.rgb, sum, pix_0.a, sum;" 
 
 		  "MAD dst, mask, -output.a, mask;"
