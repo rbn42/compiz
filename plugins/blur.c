@@ -1296,6 +1296,14 @@ getDstBlurFragmentFunction (CompScreen  *s,
 		}
 	    }
 
+            snprintf (str, 1024,
+                      //粗略的亮度调节
+                      "MAX pix_0.a,  sum.r, sum.g;" //临时变量pix_0,只有高斯有
+                      "MAX pix_0.a,  pix_0.a, sum.b;" 
+                      "ADD pix_0.a, sum.a, -pix_0.a;" 
+                      "MAX pix_0.a,  pix_0.a, 0.0;" 
+                      "MAD sum.rgb, sum, pix_0.a, sum;");
+
 	} break;
 	case BLUR_FILTER_MIPMAP:
 	    ok &= addFetchOpToFunctionData (data, "output", NULL, target);
@@ -1310,6 +1318,14 @@ getDstBlurFragmentFunction (CompScreen  *s,
 		      param + 1);
 
 	    ok &= addDataOpToFunctionData (data, str);
+
+            snprintf (str, 1024,
+                      //粗略的亮度调节
+                      "MAX fCoord.a,  sum.r, sum.g;" 
+                      "MAX fCoord.a,  fCoord.a, sum.b;" 
+                      "ADD fCoord.a, sum.a, -fCoord.a;" 
+                      "MAX fCoord.a,  fCoord.a, 0.0;" 
+                      "MAD sum.rgb, sum, fCoord.a, sum;");
 	    break;
 	}
 
@@ -1326,13 +1342,6 @@ getDstBlurFragmentFunction (CompScreen  *s,
 	}
 
 	snprintf (str, 1024,
-                  //粗略的亮度调节
-                  "MAX pix_0.a,  sum.r, sum.g;" //临时变量pix_0,只有高斯有
-                  "MAX pix_0.a,  pix_0.a, sum.b;" 
-                  "ADD pix_0.a, sum.a, -pix_0.a;" 
-                  "MAX pix_0.a,  pix_0.a, 0.0;" 
-                  "MAD sum.rgb, sum, pix_0.a, sum;" 
-
 		  "MAD dst, mask, -output.a, mask;"
 		  "MAD output.rgb, sum, dst.a, output;"
 		  "ADD output.a, output.a, dst.a;");
