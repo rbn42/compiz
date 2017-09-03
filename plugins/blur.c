@@ -1327,10 +1327,31 @@ getDstBlurFragmentFunction (CompScreen  *s,
 
 	snprintf (str, 1024,
                   //粗略的亮度调节
-                  "MAX pix_0, sum.r, sum.g;" //临时变量pix_0,只有高斯有
-                  "MAX pix_0, pix_0.a, sum.b;" 
-                  "SUB pix_0, sum, pix_0;" 
-                  "MAD sum.rgb, sum, pix_0.a, sum;" 
+                  "MAX pix_0,sum.r,sum.g;" //临时变量pix_0,只有高斯有
+                  "MAX pix_0,pix_0,sum.b;" //最大值max
+
+                  "SUB pix_2,2.0,pix_0;" //模拟1/max 或者用FRAC 操作符?
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+
+                  "SUB pix_1,sum,pix_0;"   //sum-max
+                  "MIN pix_3,pix_1,0.25;"//增值,最多0.25,或者到顶
+                  "MUL pix_4,pix_3,pix_2;" // 增值/max
+                  "MAD sum.rgb,sum,pix_4.a,sum;" 
 
 		  "MAD dst, mask, -output.a, mask;"
 		  "MAD output.rgb, sum, dst.a, output;"
