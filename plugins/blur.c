@@ -1336,6 +1336,18 @@ getDstBlurFragmentFunction (CompScreen  *s,
                   "MAD pix_2,pix_1,pix_2,1.0;" 
                   "MAD pix_2,pix_1,pix_2,1.0;" 
                   "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;"
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
+                  "MAD pix_2,pix_1,pix_2,1.0;" 
                   "MAD pix_2,pix_1,pix_2,1.0;" 
                   "MAD pix_2,pix_1,pix_2,1.0;" 
                   "MAD pix_2,pix_1,pix_2,1.0;" 
@@ -1350,7 +1362,7 @@ getDstBlurFragmentFunction (CompScreen  *s,
                   "MAD pix_2,pix_1,pix_2,1.0;" 
 
                   "SUB pix_1,sum,pix_0;"   //sum-max
-                  "MIN pix_3,pix_1,0.25;"//增值,最多0.25,或者到顶
+                  "MIN pix_3,pix_1,0.15;"//增值,最多0.15,或者到sum.a
                   "MUL pix_4,pix_3,pix_2;" // 增值/max
                   "MAD sum.rgb,sum,pix_4.a,sum;" 
 
