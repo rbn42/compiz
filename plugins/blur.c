@@ -1330,6 +1330,7 @@ getDstBlurFragmentFunction (CompScreen  *s,
                   "MAX pix_0,sum.r,sum.g;" //临时变量pix_0,只有高斯有
                   "MAX pix_0,pix_0,sum.b;" //最大值max
 
+                  "SUB pix_1,1.0,pix_0;"   
                   "SUB pix_2,2.0,pix_0;" //模拟1/max 或者用FRAC 操作符?
                   "MAD pix_2,pix_1,pix_2,1.0;" 
                   "MAD pix_2,pix_1,pix_2,1.0;" 
