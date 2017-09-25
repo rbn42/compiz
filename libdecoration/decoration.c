@@ -1199,8 +1199,8 @@ decor_shadow_create (Display		    *xdisplay,
     c->left_corner_space   = MAX (1, size - solid_left   + shadow_offset_x);
     c->top_corner_space    = MAX (1, size - solid_top    + shadow_offset_y);
 
-    shadow_offset_x=3;
-    shadow_offset_y=3;
+    shadow_offset_x=1;
+    shadow_offset_y=1;
 
     width  = MAX (width, c->left_corner_space + c->right_corner_space);
     height = MAX (height, c->top_corner_space + c->bottom_corner_space);
